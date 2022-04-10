@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -24,9 +23,9 @@ SECRET_KEY = 'django-insecure-ba&r)r6q(q&2#o^-1)=1g)m0u_0dl_7!ibmb!zk94otfa#2wc_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+# DEBUG = False 时运行 python3 manage.py runserver --insecure 以避免静态文件无法加载的问题
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','192.168.1.17','*']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.17', '*']
 
 # Application definition
 
@@ -56,8 +55,7 @@ ROOT_URLCONF = 'testdeployment.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates',
-                 BASE_DIR / 'blog' / 'templates'],
+        'DIRS': [BASE_DIR / 'templates', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'testdeployment.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -82,7 +79,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -102,7 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -114,17 +109,21 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'templates/blog/static/'),
-)
+# 在以下路径中搜索静态文件
+STATICFILES_DIRS = [
+    BASE_DIR / 'blog/static/',
+]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# 将所有静态文件存储在一个文件夹中
+STATIC_ROOT = BASE_DIR / 'static/'
+
+# 不在响应中设置 X-Content-Type-Options: nosniff，以避免浏览器拒绝显示静态文件
+SECURE_CONTENT_TYPE_NOSNIFF = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

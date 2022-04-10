@@ -1,0 +1,26 @@
+{% load static %}
+{# 去除 <!DOCTYPE html> 以避免静态文件失效#}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+{#    <link rel="stylesheet" type="text/css" href="blog/static/css/index.css">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <title>博客首页</title>
+    <style>
+        body {
+            background-color: #caf8f3;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Blog</h1>
+<p>
+    一篇文章
+</p>
+</body>
+</html>

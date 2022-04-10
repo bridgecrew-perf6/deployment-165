@@ -1,0 +1,1 @@
+完成教程详见 [简单使用 uwsgi + nginx 在本地 Ubuntu 成功部署 django 项目](https://blog.csdn.net/dangfulin/article/details/123022216)
